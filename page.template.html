@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <title>Some Title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="public/uno.css" />
+    <style>
+      :root {
+        --vt-duration: 0.5s;
+        --vt-at: 50% 0%;
+      }
+      @keyframes circle-expand {
+        from {
+          clip-path: circle(0% at var(--vt-at));
+        }
+        to {
+          clip-path: circle(100% at var(--vt-at));
+        }
+      }
+      ::view-transition-old(root) {
+        animation: var(--vt-duration) cubic-bezier(1, 0, 1, 0) both none;
+      }
+      ::view-transition-new(root) {
+        animation: var(--vt-duration) cubic-bezier(0.4, 0, 1, 0.6) both
+          circle-expand;
+      }
+      body {
+        font-size: 18px;
+      }
+    </style>
+  </head>
+  <body class="dark:bg-dark dark:text-light">
+    <button id="darkmode">mode</button>
+    <script>
+      // Dark mode switch
+      const switchLights = (ev) => {
+        let html = document.documentElement;
+        let classes = html.className.split(" ");
+        if (classes.includes("dark")) {
+          html.className = classes.filter((x) => x !== "dark").join(" ");
+        } else {
+          html.className = html.className + " dark";
+        }
+      };
+      const onReady = () => {
+        document.getElementById("darkmode").addEventListener("click", (ev) => {
+          if (!document.startViewTransition) {
+            switchLights();
+            return;
+          }
+
+          document
+            .querySelector(":root")
+            .style.setProperty(
+              "--vt-at",
+              ev.clientX + "px " + ev.clientY + "px",
+            );
+          document.startViewTransition(() => switchLights());
+        });
+      };
+      if (document.readyState !== "loading") {
+        onReady();
+      } else {
+        document.addEventListener("DOMContentLoaded", onReady);
+      }
+    </script>
+    ${children}
+  </body>
+</html>
