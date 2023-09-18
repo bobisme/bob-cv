@@ -1,14 +1,354 @@
-[[companies]]
-name = "Steinbauer Performance"
-start = "2010-10-15"
-end = "2016-08-12"
-positions = []
-
+tags = [
+  { id = "ml", name = "AI/Machine Learning" },
+  { id = "sec", name = "Software Security" },
+  { id = "lead", name = "Leadership" },
+]
+#----------------------------------------------------------#
+# Sabbatical
+#----------------------------------------------------------#
+#----------------------------------------------------------#
+# LIVERAMP                                                 #
+#----------------------------------------------------------#
 [[companies]]
 name = "LiveRamp"
-start = "2016-08-15"
-end = "2021-12-01"
-positions = [
-  { name = "Software Engineer", start = "2021-12-01" },
-  { name = "Tech Lead", start = "2018-05-01" },
-]
+start = 2016-08-15T12:00:00Z
+end = 2021-12-01T12:00:00Z
+location = "New York, NY / San Francisco, CA"
+
+[[companies.positions]]
+tags = []
+name = "Principal Product Security Engineer"
+start = 2020-06-01T12:00:00Z
+end = 2021-12-01T12:00:00Z
+
+[[companies.positions.notables]]
+tags = []
+desc = "fart"
+
+[[companies.positions]]
+tags = []
+name = "Tech Lead & Engineering Manager"
+start = 2018-05-01T12:00:00Z
+end = 2020-06-01T12:00:00Z
+
+[[companies.positions.notables]]
+tags = []
+desc = "fart2"
+
+[[companies.positions]]
+tags = []
+name = "Senior Software Engineer"
+start = 2016-08-15T12:00:00Z
+end = 2018-05-01T12:00:00Z
+
+[[companies.positions.notables]]
+tags = []
+desc = "fart"
+
+[[companies.positions.notables]]
+tags = []
+desc = "poop"
+
+#----------------------------------------------------------#
+# STEINBAUER                                               #
+#----------------------------------------------------------#
+[[companies]]
+name = "Steinbauer Performance"
+start = 2010-10-15T12:00:00Z
+end = 2016-08-12T12:00:00Z
+location = "Charlotte, NC / Wartberg, Austria"
+
+[[companies.positions]]
+name = "Full-Stack Software Engineer"
+tags = []
+summary = """
+* Acted as the lead (often sole) full-stack software engineer
+responsible for all web-based applications, reporting directly to the
+president of the company.
+* Conducted interviews for, guided, and supervised junior engineers.
+Traveled often between Europe and the US, lived over one year in Austria,
+have Global Entry, and can speak conversational German.
+"""
+
+[[companies.positions.notables]]
+tags = []
+desc = """
+Built a new STEINBAUER website; A multi-national, multi-currency,
+multi-lingual web app with vehicles, products, pricing, a custom search
+engine, e-commerce features, documents, warranty registration, a product
+news generator, hardware log management and graphing, software user and
+license management, newsletter generation, i18n mail queuing, content
+management, and more.
+"""
+[[companies.positions.notables]]
+tags = []
+desc = """
+Designed and built a vehicle fleet data streaming service in Go
+using gRPC. It features data processing, live streaming via web
+sockets, an API for stored data, and the ability to push commands
+(lock doors, clear fault codes) to a vehicle.
+"""
+[[companies.positions.notables]]
+tags = []
+desc = """
+Built the isomorphic web app UI for the fleet service using
+React.js, Redux, and Node.js. It features live and historical
+views of the data, vehicle management, live map view of the fleet,
+and a separate web app for workshops to document inspections
+and service.
+"""
+[[companies.positions.notables]]
+tags = []
+desc = """
+Built a client library in Java for the fleet service, used in
+the vehicle hardware, and an Android app to benchmark mobile
+networks.
+"""
+[[companies.positions.notables]]
+tags = []
+desc = """
+Built an oAuth2 endpoint with JWT tokens and EC DSA signing for
+for secure and stateless microservice authentication.
+"""
+[[companies.positions.notables]]
+tags = []
+desc = """
+Designed and built a system for using and monitoring production and
+testing equipment placed around the world. The system features a custom
+asynchronous protocol (msgpack, ZeroMQ), an encryption layer with forward
+secrecy (libsodium), an asynchronous python server (python, gevent),
+a client library for the hardware (C#), and a web front-end (angular,
+web sockets).
+"""
+[[companies.positions.notables]]
+tags = []
+desc = """
+Led the massive effort of migrating the ERP system of
+the parent company and all subsidiaries from Sage Office Line (SQL
+Server, entirely German database) to Odoo (Linux, Python, PostgreSQL).
+"""
+[[companies.positions.notables]]
+tags = []
+desc = """
+Worked with directly with all other department heads to deliver fixes
+for bugs in Odoo's original source code and new features tailored to
+the company's unique, vertical supply chain. This involved sales,
+purchasing, warehouse, manufacturing, firmware, and accounting.
+"""
+[[companies.positions.notables]]
+tags = []
+desc = """
+Designed and built auxiliary services for the web site such as PDF
+rendering, asynchronous task running and scheduling, and redis
+caching.
+"""
+[[companies.positions.notables]]
+tags = []
+desc = """
+Built service to synchronize product and pricing info from old ERP to
+the website. Featured custom signing and encryption before libsodium.
+"""
+[[companies.positions.notables]]
+tags = []
+desc = """
+Designed and built REST APIs for software license management and updates,
+firmware management, remote logging product data from iPad or desktop
+apps, and more.
+"""
+[[companies.positions.notables]]
+tags = []
+desc = """
+Extra projects included using computer vision and OCR to scan TÜV
+certificates, building a ternary search tree python indexer and
+JavaScript searcher for fast, offline web search, and a Chrome app to
+print product bar-code labels to Zebra printers via ZPL.
+"""
+[[companies.positions.notables]]
+tags = []
+desc = """
+Migrated Odoo development from a single-engineer-workflow to a team
+project using Vagrant and Gitlab.
+"""
+
+#----------------------------------------------------------#
+# ShiftSource
+#----------------------------------------------------------#
+[[companies]]
+name = "ShiftSource"
+start = 2010-10-15T12:00:00Z
+end = 2016-08-12T12:00:00Z
+location = "Statesville, NC"
+
+[[companies.positions]]
+name = "President, Full-Stack Software Engineer"
+start = 2010-10-15T12:00:00Z
+tags = []
+summary = """
+"""
+[[companies.positions.notables]]
+tags = []
+desc = """
+Designed and built a site for client, Green Power South, with a blog,
+a gallery, and a custom-built widget using NOAA data to estimate solar
+energy and value for the day. Used Django and Python.
+"""
+[[companies.positions.notables]]
+tags = []
+desc = """
+Designed and built real estate web app and site for client, Savon
+Realty, which parsed, normalized, and indexed data from the
+Charlotte-Mecklenburg Listing Service to provide faceted search for
+listings. Featured PHP, Zend Framework, jQuery, Python, and
+SQLAlchemy.
+"""
+[[companies.positions.notables]]
+tags = []
+desc = """
+Redesigned and rebuilt the Savon Realty front-end using Django and
+AJAX to improved user experience and to increase navigation speed by 50%.
+"""
+[[companies.positions.notables]]
+tags = []
+desc = """
+Designed and built a site to resell web templates and web hosting for
+my own company, Shift Source. Hand-built with PHP 4 and MySQL.
+"""
+[[companies.positions.notables]]
+tags = []
+desc = """
+Sourced, designed, built, sold, and installed PC-based digital
+surveillance systems locally.
+"""
+
+#----------------------------------------------------------#
+# Green Power South
+#----------------------------------------------------------#
+[[companies]]
+name = "Green Power South"
+start = 2010-01-01T12:00:00Z
+end = 2010-10-01T12:00:00Z
+location = "Statesville, NC"
+
+[[companies.positions]]
+tags = []
+name = "Vice President"
+# start = 2020-06-01T12:00:00Z
+# end = 2021-12-01T12:00:00Z
+
+[[companies.positions.notables]]
+tags = []
+desc = """
+Created project estimates for solar panel installations including tax
+incentives, parts, labor, and estimated photo-voltaic energy
+production. 
+"""
+
+#----------------------------------------------------------#
+# East 77 Contractors
+#----------------------------------------------------------#
+
+[[companies]]
+name = "East 77 Contractors"
+start = 2008-09-01T12:00:00Z
+end = 2010-10-01T12:00:00Z
+location = "Statesville, NC"
+
+[[companies.positions]]
+tags = []
+name = "Construction Manager"
+# start = 2020-06-01T12:00:00Z
+# end = 2021-12-01T12:00:00Z
+
+[[companies.positions.notables]]
+tags = []
+desc = """
+Designed floor plans for up-fits and renovations, produced complete
+sets of construction drawings, and managed construction. 
+"""
+
+#----------------------------------------------------------#
+# Adams + Associates Architecture
+#----------------------------------------------------------#
+
+[[companies]]
+name = "Adams + Associates"
+start = 2007-01-01T12:00:00Z
+end = 2008-09-01T12:00:00Z
+location = "Statesville, NC"
+
+[[companies.positions]]
+tags = []
+name = "CAD Technician, Graduate Architect"
+# start = 2020-06-01T12:00:00Z
+# end = 2021-12-01T12:00:00Z
+
+[[companies.positions.notables]]
+tags = []
+desc = """
+Produced 3D models of 600,000 sqft shopping centers. Coordinated with
+engineers and produced complete construction documents. 
+"""
+
+[[companies.positions.notables]]
+tags = []
+desc = """
+Wrote Ruby plugin for Google SketchUp to automate parking lot layout,
+reducing model production time by 2-20 hours per project. 
+"""
+
+#----------------------------------------------------------#
+#----------------------------------------------------------#
+# Education
+#----------------------------------------------------------#
+#----------------------------------------------------------#
+
+[[education]]
+name = "Machine Learning Engineer Nanodegree"
+location = "Udacity"
+end = 2017-05-01T12:00:00Z
+tags = []
+desc = ""
+
+[[education]]
+name = "Discrete Optimization, University of Melbourne"
+sub = "Inaugural online course"
+location = "ml-class.org"
+end = 2013-08-01T12:00:00Z
+tags = []
+desc = """
+Went beyond the parameters of the class, explored published
+research and wrote highly optimized programs in C and
+Go using genetic algorithms, completing the course “with
+Distinction.” 
+"""
+
+
+[[education]]
+tags = []
+name = "Machine Learning, Stanford University"
+sub = "Inaugural online course"
+location = "ml-class.org"
+end = 2011-12-01T12:00:00Z
+desc = """
+Completed with a grade of 100% 
+"""
+
+
+[[education]]
+name = "Intro to Artificial Intelligence, Stanford University"
+sub = "Inaugural online course"
+location = "ai-class.org"
+end = 2011-12-01T12:00:00Z
+tags = []
+desc = """
+Completed course in top 10% of students, "with distinction." 
+"""
+
+[[education]]
+name = "Mitchell Community College"
+location = "Statesville, NC"
+end = 2008-05-01T12:00:00Z
+desc = """
+*A.S., Mathematics*, 2008
+*A.A.*, 2005
+"""

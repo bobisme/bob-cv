@@ -11,5 +11,8 @@ html:
 
 build: css html
 
+watch-build:
+  watchexec -e toml,ts,tsx,html,css "just build && nyxt --remote --quit --eval '(reload-current-buffer)'"
+
 test-unit *args='':
   bun test {{args}}
