@@ -164,7 +164,7 @@ async function loadData(path: string): Promise<Data> {
   //   }
   // }
   data.companies.sort((a: Company, b: Company) => a.end <= b.end);
-  console.log(data);
+  // console.log(data);
   return data;
 }
 

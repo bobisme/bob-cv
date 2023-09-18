@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="">
+<html lang="en" class="light">
   <head>
     <title>Some Title</title>
     <meta charset="UTF-8" />
@@ -49,18 +49,29 @@
       }
     </style>
   </head>
-  <body class="dark:bg-dark dark:text-light">
-    <button id="darkmode">mode</button>
+  <body class="dark:bg-dark dark:text-light light:bg-light light:text-dark">
+    <button
+      id="darkmode"
+      class="align-middle border-0 p-x-0 border-b hover:border-b-2 bg-transparent fs--1 print:hidden absolute mt-3 dark:text-light dark:border-light light:text-dark light:border-dark"
+      aria-hidden="true"
+    >
+      Change Color
+      <!-- <span class="dark:i-carbon-moon i-carbon sun block">&nbsp;</span> -->
+    </button>
     <script>
       // Dark mode switch
       const switchLights = (ev) => {
         let html = document.documentElement;
-        let classes = html.className.split(" ");
-        if (classes.includes("dark")) {
-          html.className = classes.filter((x) => x !== "dark").join(" ");
-        } else {
-          html.className = html.className + " dark";
-        }
+        const toggleClass = (cls) => {
+          let classes = html.className.split(" ");
+          if (classes.includes(cls)) {
+            html.className = classes.filter((x) => x !== cls).join(" ");
+          } else {
+            html.className = [...html.classList, cls].join(" ");
+          }
+        };
+        toggleClass("light");
+        toggleClass("dark");
       };
       const onReady = () => {
         document.getElementById("darkmode").addEventListener("click", (ev) => {
@@ -84,6 +95,11 @@
         document.addEventListener("DOMContentLoaded", onReady);
       }
     </script>
+    <h1 class="text-right mb-0 line-height-tight">Bob’s Résumé</h1>
+    <div class="text-right line-height-tight">bob@standardinput.co</div>
+    <div class="text-right line-height-tight">
+      <a href="https://github.com/bobisme">github.com/bobisme</a>
+    </div>
     ${children}
   </body>
 </html>
