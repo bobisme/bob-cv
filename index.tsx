@@ -22,6 +22,7 @@ type Position = {
   name: string;
   desc?: string;
   start?: Date;
+  end?: Date;
   sections?: NotablesSection;
   notables?: Notable[];
 };
@@ -137,6 +138,21 @@ export const Company = (attrs: Company, _: string[]): string => {
   );
 };
 
+export const Education = (attrs: Education, _: string[]): string => {
+  return (
+    <div class="edu">
+      <h3 class="fs-0 mb-0 leading-tight">{attrs.name}</h3>
+      <div>
+        <span class="mb-0 leading-tight">
+          {dateFormat(attrs.end, "mmm yyyy")} &mdash; {attrs.location}
+        </span>
+        {attrs.sub ? <span class="fs-0 italic">&mdash;{attrs.sub}</span> : ""}
+      </div>
+      {attrs.desc ? <div class="">{parseDesc(attrs.desc)}</div> : ""}
+    </div>
+  );
+};
+
 const PAGE_TEMPLATE = await Bun.file("page.template.html").text();
 
 export const Page = (
@@ -148,6 +164,7 @@ export const Page = (
 
 type Data = {
   companies: Company[];
+  education: Education[];
 };
 
 async function loadData(path: string): Promise<Data> {
@@ -180,10 +197,13 @@ async function main() {
 
   const data = await loadData(opts.cvData);
 
-  let page = Page(
-    {},
+  let inner: string[] = [
     data.companies.map((company) => <Company {...company} />),
-  );
+    [<h2>Education</h2>],
+    data.education.map((edu) => <Education {...edu} />),
+  ].flat();
+
+  let page = Page({}, inner);
   Bun.write(opts.outFile, page);
 }
 
