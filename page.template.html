@@ -4,17 +4,30 @@
     <title>Some Title</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="public/uno.css" />
-    <!-- <link -->
-    <!--   rel="stylesheet" -->
-    <!--   href="https://fonts.googleapis.com/css?family=Inclusive+Sans" -->
-    <!-- /> -->
     <link rel="stylesheet" href="public/latex.css" />
+    <link rel="stylesheet" href="public/uno.css" />
     <style>
       :root {
         --vt-duration: 0.5s;
         --vt-at: 50% 0%;
+        font-size: 22px;
+        @media print {
+          font-size: 12px;
+        }
+        @page:first {
+          margin: 0in;
+        }
+        @page:last {
+          margin: 2in;
+        }
+        @page:left {
+          margin: 1in 0.75in 1in 1in;
+        }
+        @page:right {
+          margin: 1in 1in 1in 0.75in;
+        }
       }
+
       @keyframes circle-expand {
         from {
           clip-path: circle(0% at var(--vt-at));
@@ -30,11 +43,9 @@
         animation: var(--vt-duration) cubic-bezier(0.4, 0, 1, 0.6) both
           circle-expand;
       }
-      body {
-        font-size: 22px;
-        /* font-family: "Inclusive Sans", system-ui, sans-serif; */
-        /* font-family: "Iowan Old Style", "Palatino Linotype", "URW Palladio L", */
-        /*   P052, serif; */
+
+      li p:first-child {
+        margin-top: 0;
       }
     </style>
   </head>

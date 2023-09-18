@@ -12,14 +12,24 @@ type Notable = {
   tags: string[];
   desc: string;
 };
+
+type NotablesSection = {
+  title?: string;
+  notables: Notable[];
+};
+
 type Position = {
   name: string;
+  desc?: string;
   start?: Date;
-  notables: Notable[];
+  sections?: NotablesSection;
+  notables?: Notable[];
 };
 
 type Company = {
   name: string;
+  desc?: string;
+  location?: string;
   start: Date;
   end: Date;
   positions: Position[];
@@ -42,30 +52,66 @@ export const Notable = (attrs: Notable, contents: string[]): string => (
 );
 
 const parseDesc = (desc: string): string => {
+  let out = desc.trim();
   // eliminate orphans
-  for (let i = desc.length - 1; i > 0; i -= 1) {
-    if (desc.charAt(i) === " ") {
-      desc = [desc.slice(0, i), "&nbsp;", desc.slice(i + 1)].join("");
+  for (let i = out.length - 1; i > 0; i -= 1) {
+    if (out.charAt(i) === " ") {
+      out = [out.slice(0, i), "&nbsp;", out.slice(i + 1)].join("");
       break;
     }
   }
-  return marked.parse(hyphenateSync(desc));
+  out = hyphenateSync(out);
+  out = marked.parse(out);
+  return out;
+};
+
+export const PositionHeader = (attrs: Position, _: string[]): string => {
+  if (!attrs.name) return "";
+  return (
+    <span>
+      <h3 class="name inline-block">{attrs.name}</h3>
+      {attrs.start ? (
+        <span class="pos-start">
+          &mdash; {dateFormat(attrs.start, "mmm yyyy")}
+        </span>
+      ) : (
+        ""
+      )}
+    </span>
+  );
 };
 
 export const Position = (attrs: Position, _: string[]): string => {
   return (
     <div class="position">
-      <h3 class="name">{attrs.name}</h3>
-      {attrs.start ? (
-        <span class="pos-start">{dateFormat(attrs.start, "mmm yyyy")}</span>
+      <PositionHeader {...attrs} />
+      {attrs.desc
+        ? [
+            <span class="pos-desc fs-0">{parseDesc(attrs.desc)}</span>,
+            <h4>Projects</h4>,
+          ]
+        : ""}
+      {attrs.sections
+        ? attrs.sections.map((sec) => (
+            <div class="section">
+              <h5>{sec.title}</h5>
+              <ul class="notables">
+                {sec.notables.map((note) => (
+                  <Notable {...note}>{parseDesc(note.desc)}</Notable>
+                ))}
+              </ul>
+            </div>
+          ))
+        : ""}
+      {attrs.notables ? (
+        <ul class="notables">
+          {attrs.notables.map((note) => (
+            <Notable {...note}>{parseDesc(note.desc)}</Notable>
+          ))}
+        </ul>
       ) : (
         ""
       )}
-      <ul class="notables">
-        {attrs.notables.map((note) => (
-          <Notable {...note}>{parseDesc(note.desc)}</Notable>
-        ))}
-      </ul>
     </div>
   );
 };
@@ -75,10 +121,15 @@ export const Company = (attrs: Company, _: string[]): string => {
   let end = dateFormat(attrs.end, "mmm yyyy");
   return (
     <div class="company">
-      <h2 class="comp-name inline-block">{attrs.name}</h2>
-      &mdash;
+      <h2 class="comp-name mb-0">{attrs.name}</h2>
       {/* prettier refuses to leave the spaces alone */}
       {`<span class="comp-start">${start}</span>&ndash;<span class="comp-end">${end}</span>`}
+      {attrs.location ? (
+        <span class="location italic">&mdash; {attrs.location}</span>
+      ) : (
+        ""
+      )}
+      {attrs.desc ? <div class="fart">{parseDesc(attrs.desc)}</div> : ""}
       {attrs.positions.map((pos) => (
         <Position {...pos} />
       ))}

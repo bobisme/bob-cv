@@ -2,10 +2,41 @@ tags = [
   { id = "ml", name = "AI/Machine Learning" },
   { id = "sec", name = "Software Security" },
   { id = "lead", name = "Leadership" },
+  { id = "sys", name = "System Architecture" },
 ]
 #----------------------------------------------------------#
 # Sabbatical
 #----------------------------------------------------------#
+[[companies]]
+name = "Independent Projects"
+start = 2021-12-01T12:00:00Z
+end = 2023-09-15T12:00:00Z
+location = "Statesville, NC"
+
+[[companies.positions]]
+tags = []
+name = ""
+
+[[companies.positions.notables]]
+tags = ["eng", "design"]
+desc = "Engineered a 3D-printing toolhead using an innovative carbon fiber tubing and pressure-fit method, eliminating screws and significantly reducing mass."
+
+[[companies.positions.notables]]
+tags = ["sys", "dev"]
+desc = "Developed an experimental, event-driven ECS database for web services, optimized to perform efficiently at smaller scales compared to prevalent systems."
+
+[[companies.positions.notables]]
+tags = ["dev", "fin"]
+desc = "Designed a cryptocurrency trade backtesting system from scratch using Python."
+
+[[companies.positions.notables]]
+tags = ["eng", "mod"]
+desc = "Constructed a high-speed 3D printer from parts, adapting the original design for enhanced movement speed and flow rates."
+
+[[companies.positions.notables]]
+tags = ["eng", "dev", "design"]
+desc = "Created a remote-controlled lawn mower using C, Rust, a Teensy 4.0, and an electric push mower, incorporating a custom-designed cycloidal gearing system."
+
 #----------------------------------------------------------#
 # LIVERAMP                                                 #
 #----------------------------------------------------------#
@@ -22,8 +53,24 @@ start = 2020-06-01T12:00:00Z
 end = 2021-12-01T12:00:00Z
 
 [[companies.positions.notables]]
-tags = []
-desc = "fart"
+desc = "Developed a GitHub integration for easy setup of automated, security-centric code scanning."
+tags = ["sec", "sys"]
+
+[[companies.positions.notables]]
+desc = "Organized external penetration testing, collaborating with multiple teams."
+tags = ["sec"]
+
+[[companies.positions.notables]]
+desc = "Managed, supervised, and reviewed security bug resolutions across various teams."
+tags = ["sec", "lead"]
+
+[[companies.positions.notables]]
+desc = "Oversaw code, architecture, and product proposal reviews for security integrity."
+tags = ["sec", "lead"]
+
+[[companies.positions.notables]]
+desc = "Championed engineering-wide security training initiatives."
+tags = ["sec", "lead"]
 
 [[companies.positions]]
 tags = []
@@ -32,8 +79,36 @@ start = 2018-05-01T12:00:00Z
 end = 2020-06-01T12:00:00Z
 
 [[companies.positions.notables]]
-tags = []
-desc = "fart2"
+desc = "Successfully led the migration from co-located servers and AWS to Google Cloud for all full-stack teams."
+tags = ["lead", "sys"]
+
+[[companies.positions.notables]]
+desc = "Pioneered a container-based solution for seamless integration of zero-trust authentication, requiring minimal code adjustments."
+tags = ["sec", "sys"]
+
+[[companies.positions.notables]]
+desc = "Architectured and spearheaded a unified security infrastructure to consolidate disparate logins and APIs."
+tags = ["sec", "sys"]
+
+[[companies.positions.notables]]
+desc = "Directed the creation of a new JavaScript component library, enabling front-end engineers to efficiently develop standards-compliant web applications."
+tags = ["lead", "sys"]
+
+[[companies.positions.notables]]
+desc = "Engineered a comprehensive authorization system for refined control across all services and web apps."
+tags = ["sys", "sec"]
+
+[[companies.positions.notables]]
+desc = "Spearheaded the design and implementation of a unified token-based authentication system for single sign-on and API access across all platforms."
+tags = ["sys", "sec", "lead"]
+
+[[companies.positions.notables]]
+desc = "Directed the transition of apps and services to the new authentication framework."
+tags = ["lead", "sys"]
+
+[[companies.positions.notables]]
+desc = "Established and directed a top-performing engineering team, recognized for its outstanding productivity and high morale."
+tags = ["lead"]
 
 [[companies.positions]]
 tags = []
@@ -43,11 +118,15 @@ end = 2018-05-01T12:00:00Z
 
 [[companies.positions.notables]]
 tags = []
-desc = "fart"
+desc = """
+Mentored multiple teams via presentations, live demos, pair programming, and collaborative coding sessions, emphasizing testing, code reviews, and software design best practices.
+"""
 
 [[companies.positions.notables]]
 tags = []
-desc = "poop"
+desc = """
+Directed the team responsible for designing Arbor's reporting user interface.
+"""
 
 #----------------------------------------------------------#
 # STEINBAUER                                               #
@@ -61,114 +140,176 @@ location = "Charlotte, NC / Wartberg, Austria"
 [[companies.positions]]
 name = "Full-Stack Software Engineer"
 tags = []
-summary = """
-* Acted as the lead (often sole) full-stack software engineer
+desc = """
+* Acted as the lead full-stack software engineer
 responsible for all web-based applications, reporting directly to the
 president of the company.
 * Conducted interviews for, guided, and supervised junior engineers.
-Traveled often between Europe and the US, lived over one year in Austria,
-have Global Entry, and can speak conversational German.
+Traveled often between Europe and the US, lived more than one year in Austria.
 """
 
-[[companies.positions.notables]]
-tags = []
-desc = """
-Built a new STEINBAUER website; A multi-national, multi-currency,
-multi-lingual web app with vehicles, products, pricing, a custom search
-engine, e-commerce features, documents, warranty registration, a product
-news generator, hardware log management and graphing, software user and
-license management, newsletter generation, i18n mail queuing, content
-management, and more.
-"""
-[[companies.positions.notables]]
-tags = []
-desc = """
-Designed and built a vehicle fleet data streaming service in Go
-using gRPC. It features data processing, live streaming via web
-sockets, an API for stored data, and the ability to push commands
-(lock doors, clear fault codes) to a vehicle.
-"""
-[[companies.positions.notables]]
-tags = []
-desc = """
-Built the isomorphic web app UI for the fleet service using
-React.js, Redux, and Node.js. It features live and historical
-views of the data, vehicle management, live map view of the fleet,
-and a separate web app for workshops to document inspections
-and service.
-"""
-[[companies.positions.notables]]
-tags = []
-desc = """
-Built a client library in Java for the fleet service, used in
-the vehicle hardware, and an Android app to benchmark mobile
-networks.
-"""
-[[companies.positions.notables]]
-tags = []
-desc = """
-Built an oAuth2 endpoint with JWT tokens and EC DSA signing for
-for secure and stateless microservice authentication.
-"""
-[[companies.positions.notables]]
-tags = []
-desc = """
-Designed and built a system for using and monitoring production and
-testing equipment placed around the world. The system features a custom
-asynchronous protocol (msgpack, ZeroMQ), an encryption layer with forward
-secrecy (libsodium), an asynchronous python server (python, gevent),
-a client library for the hardware (C#), and a web front-end (angular,
-web sockets).
-"""
-[[companies.positions.notables]]
-tags = []
-desc = """
-Led the massive effort of migrating the ERP system of
-the parent company and all subsidiaries from Sage Office Line (SQL
-Server, entirely German database) to Odoo (Linux, Python, PostgreSQL).
-"""
-[[companies.positions.notables]]
-tags = []
-desc = """
-Worked with directly with all other department heads to deliver fixes
-for bugs in Odoo's original source code and new features tailored to
-the company's unique, vertical supply chain. This involved sales,
-purchasing, warehouse, manufacturing, firmware, and accounting.
-"""
-[[companies.positions.notables]]
-tags = []
-desc = """
-Designed and built auxiliary services for the web site such as PDF
-rendering, asynchronous task running and scheduling, and redis
-caching.
-"""
-[[companies.positions.notables]]
-tags = []
-desc = """
-Built service to synchronize product and pricing info from old ERP to
-the website. Featured custom signing and encryption before libsodium.
-"""
-[[companies.positions.notables]]
-tags = []
-desc = """
-Designed and built REST APIs for software license management and updates,
-firmware management, remote logging product data from iPad or desktop
-apps, and more.
-"""
-[[companies.positions.notables]]
-tags = []
-desc = """
-Extra projects included using computer vision and OCR to scan TÜV
-certificates, building a ternary search tree python indexer and
-JavaScript searcher for fast, offline web search, and a Chrome app to
-print product bar-code labels to Zebra printers via ZPL.
-"""
-[[companies.positions.notables]]
-tags = []
-desc = """
-Migrated Odoo development from a single-engineer-workflow to a team
-project using Vagrant and Gitlab.
-"""
+[[companies.positions.sections]]
+title = "Website Development and E-commerce"
+[[companies.positions.sections.notables]]
+desc = "Developed a comprehensive STEINBAUER website with multi-currency, multi-lingual support, integrating e-commerce, custom search, content management, newsletter generation, and more."
+tags = ["sys"]
+
+[[companies.positions.sections.notables]]
+desc = "Built supplementary services including PDF rendering, asynchronous task management, and Redis caching."
+tags = ["sys"]
+
+[[companies.positions.sections.notables]]
+desc = "Created a service for product and pricing synchronization from the previous ERP system."
+tags = ["sys"]
+
+[[companies.positions.sections]]
+title = "Vehicle Fleet and Data Streaming"
+[[companies.positions.sections.notables]]
+desc = "Designed and implemented a vehicle fleet data streaming service using Go and gRPC, supporting real-time data processing and commands like door locking and fault code clearance."
+tags = ["sys"]
+
+[[companies.positions.sections.notables]]
+desc = "Constructed the isomorphic web UI for fleet management using React.js, Redux, and Node.js, offering both live and historical data views."
+tags = ["sys"]
+
+[[companies.positions.sections.notables]]
+desc = "Developed a Java client library for fleet services utilized in vehicle hardware and for Android network benchmarking."
+tags = ["sys"]
+
+[[companies.positions.sections]]
+title = "Authentication and Security"
+[[companies.positions.sections.notables]]
+desc = "Established an oAuth2 endpoint using JWT tokens and EC DSA for robust microservice authentication."
+tags = ["sec"]
+
+[[companies.positions.sections.notables]]
+desc = "Crafted a global monitoring system for production/testing equipment with advanced encryption, asynchronous protocols, and a user-friendly web interface."
+tags = ["sec", "sys"]
+
+[[companies.positions.sections]]
+title = "ERP System Migration and Management"
+[[companies.positions.sections.notables]]
+desc = "Spearheaded the migration of the parent company's ERP system from Sage Office Line to Odoo."
+tags = ["lead", "sys"]
+
+[[companies.positions.sections.notables]]
+desc = "Collaborated with department heads across sales, purchasing, manufacturing, and accounting to refine Odoo's source code and customize it for our unique supply chain."
+tags = ["lead", "sys"]
+
+[[companies.positions.sections]]
+title = "APIs and Additional Services"
+[[companies.positions.sections.notables]]
+desc = "Designed RESTful APIs for software licensing, firmware management, remote logging, and more."
+tags = ["sys"]
+
+[[companies.positions.sections.notables]]
+desc = "Developed a computer vision project for TÜV certificate scanning, and an offline web search tool using a ternary search tree."
+tags = ["ml", "sys"]
+
+[[companies.positions.sections.notables]]
+desc = "Created a Chrome app to print product barcodes for Zebra printers."
+tags = ["sys"]
+
+
+# [[companies.positions.notables]]
+# tags = []
+# desc = """
+# Built a new STEINBAUER website; A multi-national, multi-currency,
+# multi-lingual web app with vehicles, products, pricing, a custom search
+# engine, e-commerce features, documents, warranty registration, a product
+# news generator, hardware log management and graphing, software user and
+# license management, newsletter generation, i18n mail queuing, content
+# management, and more.
+# """
+# [[companies.positions.notables]]
+# tags = []
+# desc = """
+# Designed and built a vehicle fleet data streaming service in Go
+# using gRPC. It features data processing, live streaming via web
+# sockets, an API for stored data, and the ability to push commands
+# (lock doors, clear fault codes) to a vehicle.
+# """
+# [[companies.positions.notables]]
+# tags = []
+# desc = """
+# Built the isomorphic web app UI for the fleet service using
+# React.js, Redux, and Node.js. It features live and historical
+# views of the data, vehicle management, live map view of the fleet,
+# and a separate web app for workshops to document inspections
+# and service.
+# """
+# [[companies.positions.notables]]
+# tags = []
+# desc = """
+# Built a client library in Java for the fleet service, used in
+# the vehicle hardware, and an Android app to benchmark mobile
+# networks.
+# """
+# [[companies.positions.notables]]
+# tags = []
+# desc = """
+# Built an oAuth2 endpoint with JWT tokens and EC DSA signing for
+# for secure and stateless microservice authentication.
+# """
+# [[companies.positions.notables]]
+# tags = []
+# desc = """
+# Designed and built a system for using and monitoring production and
+# testing equipment placed around the world. The system features a custom
+# asynchronous protocol (msgpack, ZeroMQ), an encryption layer with forward
+# secrecy (libsodium), an asynchronous python server (python, gevent),
+# a client library for the hardware (C#), and a web front-end (angular,
+# web sockets).
+# """
+# [[companies.positions.notables]]
+# tags = []
+# desc = """
+# Led the massive effort of migrating the ERP system of
+# the parent company and all subsidiaries from Sage Office Line (SQL
+# Server, entirely German database) to Odoo (Linux, Python, PostgreSQL).
+# """
+# [[companies.positions.notables]]
+# tags = []
+# desc = """
+# Worked with directly with all other department heads to deliver fixes
+# for bugs in Odoo's original source code and new features tailored to
+# the company's unique, vertical supply chain. This involved sales,
+# purchasing, warehouse, manufacturing, firmware, and accounting.
+# """
+# [[companies.positions.notables]]
+# tags = []
+# desc = """
+# Designed and built auxiliary services for the web site such as PDF
+# rendering, asynchronous task running and scheduling, and redis
+# caching.
+# """
+# [[companies.positions.notables]]
+# tags = []
+# desc = """
+# Built service to synchronize product and pricing info from old ERP to
+# the website. Featured custom signing and encryption before libsodium.
+# """
+# [[companies.positions.notables]]
+# tags = []
+# desc = """
+# Designed and built REST APIs for software license management and updates,
+# firmware management, remote logging product data from iPad or desktop
+# apps, and more.
+# """
+# [[companies.positions.notables]]
+# tags = []
+# desc = """
+# Extra projects included using computer vision and OCR to scan TÜV
+# certificates, building a ternary search tree python indexer and
+# JavaScript searcher for fast, offline web search, and a Chrome app to
+# print product bar-code labels to Zebra printers via ZPL.
+# """
+# [[companies.positions.notables]]
+# tags = []
+# desc = """
+# Migrated Odoo development from a single-engineer-workflow to a team
+# project using Vagrant and Gitlab.
+# """
 
 #----------------------------------------------------------#
 # ShiftSource
@@ -349,6 +490,6 @@ name = "Mitchell Community College"
 location = "Statesville, NC"
 end = 2008-05-01T12:00:00Z
 desc = """
-*A.S., Mathematics*, 2008
+*A.S., Mathematics*, 2008  
 *A.A.*, 2005
 """
