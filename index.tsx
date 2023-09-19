@@ -7,6 +7,10 @@ import toml from "toml";
 import dateFormat from "dateformat";
 import { marked } from "marked";
 import { hyphenateSync } from "hyphen/en";
+import { NodeHtmlMarkdown } from "node-html-markdown";
+import tipograph from "tipograph";
+
+const SOFT_HYPHEN = "\u00AD";
 
 type Notable = {
   tags: string[];
@@ -62,6 +66,16 @@ const parseDesc = (desc: string): string => {
     }
   }
   out = hyphenateSync(out);
+  // strip soft hyphens from last 2 words
+  for (let i = out.length - 1; i > 0; i -= 1) {
+    if (out.charAt(i) === " ") {
+      out = [
+        out.slice(0, i + 1),
+        out.slice(i + 1).replace(SOFT_HYPHEN, ""),
+      ].join("");
+      break;
+    }
+  }
   out = marked.parse(out);
   return out;
 };
@@ -69,16 +83,16 @@ const parseDesc = (desc: string): string => {
 export const PositionHeader = (attrs: Position, _: string[]): string => {
   if (!attrs.name) return "";
   return (
-    <span>
-      <h3 class="name inline-block">{attrs.name}</h3>
+    <h3 class="name inline-block">
+      {attrs.name}
       {attrs.start ? (
-        <span class="pos-start">
+        <span class="pos-start font-normal fs-0 italic">
           &mdash; {dateFormat(attrs.start, "mmm yyyy")}
         </span>
       ) : (
         ""
       )}
-    </span>
+    </h3>
   );
 };
 
@@ -179,7 +193,8 @@ async function main() {
     .description("render static elements for a CV page")
     .version("mysterybox")
     .option("--out-file <string>", "output index.html path", "dist/index.html")
-    .option("--cv-data <string>", "input data.toml", "data.toml");
+    .option("--cv-data <string>", "input data.toml", "data.toml")
+    .option("--md-out-file <string>", "output resume.md", `dist/resume.md`);
   program.parse();
   const opts = program.opts();
 
@@ -192,7 +207,15 @@ async function main() {
   ].flat();
 
   let page = Page({}, inner);
+  let typo = tipograph({
+    format: "html",
+  });
+
+  page = typo(page);
   Bun.write(opts.outFile, page);
+
+  let md = NodeHtmlMarkdown.translate(inner.join(" "), {});
+  Bun.write(opts.mdOutFile, md);
 }
 
 main();
