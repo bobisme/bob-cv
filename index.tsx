@@ -23,7 +23,7 @@ type Position = {
   desc?: string;
   start?: Date;
   end?: Date;
-  sections?: NotablesSection;
+  sections?: NotablesSection[];
   notables?: Notable[];
 };
 
@@ -156,7 +156,7 @@ export const Education = (attrs: Education, _: string[]): string => {
 const PAGE_TEMPLATE = await Bun.file("page.template.html").text();
 
 export const Page = (
-  attrs: elements.Children & elements.Attributes,
+  _attrs: elements.Children & elements.Attributes,
   contents: string[],
 ): string => {
   return PAGE_TEMPLATE.replace("${children}", contents.join("\n"));
@@ -169,19 +169,7 @@ type Data = {
 
 async function loadData(path: string): Promise<Data> {
   let data = toml.parse(await Bun.file(path).text());
-  // console.log(data);
-  // for (let company of data.companies) {
-  //   if (Object.hasOwn(company, "start")) {
-  //     company.start = new Date(Date.parse(company.start));
-  //   }
-  //   for (let position of company.positions) {
-  //     if (Object.hasOwn(position, "start")) {
-  //       position.start = new Date(Date.parse(position.start));
-  //     }
-  //   }
-  // }
   data.companies.sort((a: Company, b: Company) => a.end <= b.end);
-  // console.log(data);
   return data;
 }
 

@@ -15,6 +15,8 @@
   },
   "dependencies": {
     "@iconify-json/carbon": "^1.1.21",
+    "@types/dateformat": "^5.0.0",
+    "@types/hyphen": "^1.6.5",
     "@unocss/preset-icons": "^0.55.7",
     "@unocss/preset-uno": "^0.55.7",
     "commander": "^11.0.0",
