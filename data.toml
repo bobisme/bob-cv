@@ -4,38 +4,262 @@ tags = [
   { id = "lead", name = "Leadership" },
   { id = "sys", name = "System Architecture" },
 ]
+
 #----------------------------------------------------------#
-# Sabbatical
+# Comulate                                                 #
+#----------------------------------------------------------#
+[[companies]]
+name = "Comulate"
+start = 2024-02-20T12:00:00Z
+location = "Remote"
+
+[[companies.positions]]
+tags = []
+name = "Software Engineer"
+
+[[companies.positions.notables]]
+tags = []
+desc = """
+Reverse-engineered proprietary APIs and complex authentication flows, enabling
+seamless integration with legacy client systems.
+"""
+details = """
+Reverse-engineered two complex, proprietary systems—Applied Epic and Vertafore
+AMS360, both leading Agency Management Systems in the insurance space.
+
+For Epic, I unraveled a highly stateful web architecture where the backend
+expected the frontend to cache and maintain UI metadata. This required
+replicating frontend behavior through a precise series of backend calls to mimic
+specific UI workflows. Initially, we captured credentials using a Chrome
+extension, and later transitioned to browser automation with dedicated logins to
+retrieve dynamic headers, which were then passed to our backend mimic service.
+
+AMS360 was entirely different. It required the desktop Windows app to be
+installed in order to interact with the web application. Basic data retrieval
+occurred via the browser, but editing actions spawned native Windows popups that
+initiated SOAP requests. I used `mitmproxy` and custom parsers to intercept and
+reverse-engineer these dense, undocumented SOAP payloads. Determining the
+correct entity creation order and associations was painstaking, especially due
+to vague action names and strict locking mechanisms that could deadlock data for
+all users if misused.
+
+This work enabled direct integration with systems that lacked usable APIs. For
+Epic, it unlocked direct posting of "premium payable" statements from our
+platform. For AMS360, it reduced a multi-step, error-prone manual process into a
+one-click operation, significantly improving user experience and reducing
+operational friction.
+"""
+
+[[companies.positions.notables]]
+tags = []
+desc = """
+Built and maintained large-scale scraping system for 20+ insurance carriers,
+automating financial data retrieval and reducing customer manual workflows by
+hours per month.
+"""
+details = """
+Designed and implemented a robust, scalable scraping framework responsible for
+automatically retrieving financial statements from 20+ major insurance carriers,
+including Aetna, Cigna, and Unum. Early scrapers used Puppeteer; later efforts
+migrated to Playwright for improved ergonomics and reliability.
+
+Scrapers ran daily via BullMQ job queues with cron-style schedules. Each
+execution instantiated a clean, isolated browser session per credential set.
+Login automation relied on customer-supplied credentials stored securely in
+Comulate Vault (encrypted at rest). MFA was handled using two customer
+onboarding steps: 1) forwarding OTP-related emails to a monitored inbox, and 2)
+routing SMS codes to a Comulate-managed phone number.
+
+Scraped documents (PDF, CSV, XLSX) were normalized through existing statement
+ingestion pipelines, which ensured deduplication and enrichment. This data
+flowed directly into Comulate’s accounting system, where accountants mapped it
+to policy-level records and posted results to AMS systems—replacing manual
+download-and-upload workflows.
+
+Developed custom monitoring via Datadog with alerts and dashboards segmented by
+portal, org, and credential. Metrics included statement volume, failures, upload
+rate, and invalid credential flags. This gave near-instant visibility into
+scraping health and allowed targeted triage by portal.
+
+The work saved customers hours per month by automating extremely brittle,
+inconsistent, and legacy UIs—many of which had no APIs and aggressive
+anti-automation measures. Reached the strategic milestone of covering the top
+20% of portals (by statement volume), drastically reducing manual labor across
+the customer base.
+"""
+
+[[companies.positions.notables]]
+tags = []
+desc = """
+Cut test infrastructure costs by over 90% by enforcing memory constraints in
+Jest via version upgrades, allowing migration to smaller CI runners and faster
+test execution.
+"""
+details = """
+Investigated escalating resource usage in CI and test environments driven by our
+Node.js test suite (Jest). Identified that memory limit settings in the Jest
+config were silently ignored due to an outdated version.
+
+Upgraded Jest and verified the memory constraints were now enforced, reducing
+per-worker usage and enabling us to move from expensive 64GB CI runners to
+cost-effective 4GB machines. This also dropped test run times from 15 minutes to
+~7 minutes. Although the underlying memory leak was not fully resolved, the
+configuration fix alone led to substantial savings and improved dev feedback
+loops.
+"""
+
+
+[[companies.positions.notables]]
+tags = []
+desc = """
+Reduced p99 latency from 30+ seconds to under 3s across key GraphQL endpoints by
+diagnosing and optimizing slow PostgreSQL queries using tracing and indexing
+strategies.
+"""
+details = """
+Led a broad performance effort targeting backend latency in customer-facing
+dashboards built on NestJS and GraphQL. Focused on high-p99 queries that were
+timing out or stalling the UI, particularly those supporting real-time analytics
+and financial summaries.
+
+Analyzed production traces, database logs, and application-layer metrics to
+isolate the slowest SQL queries. Used PostgreSQL’s `EXPLAIN (ANALYZE)` along
+with custom instrumentation to understand join patterns, filter selectivity, and
+index usage. Rewrote problematic queries to avoid nested subqueries, added
+multi-column indexes, and restructured access patterns to minimize redundant
+data access.
+
+The work brought multiple endpoints from 30+ seconds to sub-3-second p99
+latencies, significantly improving responsiveness for users and reducing error
+rates across the board. These improvements also stabilized background jobs that
+reused the same queries for scheduled reports and exports.
+"""
+
+[[companies.positions.notables]]
+tags = []
+desc = """
+Led PostgreSQL instance size upgrade to resolve scaling bottlenecks,
+coordinating a high-risk migration with minimal downtime during peak traffic
+periods.
+"""
+details = """
+Led the upgrade of our primary PostgreSQL server to a 4x larger instance after
+sustained performance issues made it clear that our previous instance class
+could no longer support peak usage. This effort followed weeks of intensive
+query optimizations that reduced pressure but couldn’t offset underlying scaling
+limits.
+
+Prepared for the upgrade by identifying high-risk queries, reducing lock
+contention, and performing shadow benchmarking on cloned environments.
+Coordinated with stakeholders to define a tight upgrade window with clear
+rollback and recovery plans.
+
+Executed the upgrade with brief planned downtime, during which we observed
+significantly improved stability and headroom post-migration. This eliminated
+daily fire drills around slow queries and allowed us to redirect engineering
+energy away from triage and back toward product delivery.
+
+We also documented and shared lessons learned across the team, including how we
+used query patterns and contention graphs to prioritize scale strategies.
+"""
+
+[[companies.positions.notables]]
+tags = []
+desc = """
+Owned remediation of low-severity security findings from external penetration
+test, supporting SOC 2 compliance with minimal disruption and full retest
+validation.
+"""
+details = """
+Led the remediation of multiple findings from an external penetration test,
+contributing to Comulate’s broader SOC 2 compliance efforts. Although the issues
+were classified as low severity, they spanned multiple subsystems and required
+targeted investigation and resolution.
+
+Addressed third-party dependency vulnerabilities, network-layer configuration
+issues, and gaps in platform-level security headers. Work included evaluating
+risk exposure, implementing fixes, and verifying behavior across staging and
+production environments. Where appropriate, certain findings were assessed and
+deprioritized based on mitigation strategies and low practical impact.
+
+All fixes were tracked through internal systems, followed by a successful retest
+by the external firm. I owned the remediation process end-to-end despite not
+having authored the original implementations, ensuring the engineering team
+maintained a strong security posture with minimal disruption.
+"""
+
+[[companies.positions.notables]]
+tags = []
+desc = """
+Built a direct database syncing system to resolve unreliable change-event-based
+integrations and ensure complete, consistent Book of Business data.
+"""
+details = """
+Replaced a fragile change-event integration that frequently missed
+updates—causing data gaps and manual intervention for users—with a robust,
+database-driven syncing system.
+
+Designed and implemented a new pipeline that connects directly to the external
+system’s database (when available), bypassing the unreliable event stream. Built
+a diffing and backfill engine to reconcile records between systems, syncing only
+missing or out-of-date data to minimize load.
+
+The system significantly improved trust and reduced manual sync requests from
+users. Careful handling of access (typically via customer-managed VPNs) and
+targeted test coverage ensured the solution was reliable and production-safe
+across customer environments.
+"""
+
+
+#----------------------------------------------------------#
+# Sabbatical                                               #
 #----------------------------------------------------------#
 [[companies]]
 name = "Independent Projects"
 start = 2021-12-01T12:00:00Z
-end = 2023-09-15T12:00:00Z
+end = 2024-02-20T12:00:00Z
 location = "Statesville, NC"
+desc = """
+Took time away from full-time employment for personal reasons during the
+pandemic and family caregiving, while pursuing intensive hands-on engineering
+and self-directed technical projects.
+"""
 
 [[companies.positions]]
+name = "Engineer / Builder / Mad Scientist"
 tags = []
-name = ""
-
-[[companies.positions.notables]]
-tags = ["eng", "design"]
-desc = "Engineered a 3D-printing toolhead using an innovative carbon fiber tubing and pressure-fit method, eliminating screws and significantly reducing mass."
-
-[[companies.positions.notables]]
-tags = ["sys", "dev"]
-desc = "Developed an experimental, event-driven ECS database for web services, optimized to perform efficiently at smaller scales compared to prevalent systems."
-
-[[companies.positions.notables]]
-tags = ["dev", "fin"]
-desc = "Designed a cryptocurrency trade backtesting system from scratch using Python."
-
-[[companies.positions.notables]]
-tags = ["eng", "mod"]
-desc = "Constructed a high-speed 3D printer from parts, adapting the original design for enhanced movement speed and flow rates."
 
 [[companies.positions.notables]]
 tags = ["eng", "dev", "design"]
-desc = "Created a remote-controlled lawn mower using C, Rust, a Teensy 4.0, and an electric push mower, incorporating a custom-designed cycloidal gearing system."
+desc = """
+Created a remote-controlled lawn mower using Rust, C, and a Teensy MCU, with
+custom-designed cycloidal gearing.
+"""
+
+[[companies.positions.notables]]
+tags = ["eng", "design"]
+desc = """
+Designed a pressure-fit, carbon-fiber 3D printer toolhead to eliminate fasteners
+and reduce mass.
+"""
+
+[[companies.positions.notables]]
+tags = ["sys", "dev"]
+desc = """
+Developed an experimental, Entity-Component-System event database optimized for
+lightweight web services.
+"""
+
+# [[companies.positions.notables]]
+# tags = ["dev", "fin"]
+# desc = "Designed a cryptocurrency trade backtesting system from scratch using Python."
+#
+# [[companies.positions.notables]]
+# tags = ["eng", "mod"]
+# desc = """
+# Constructed a high-speed 3D printer from parts, adapting the original design for
+# enhanced movement speed and flow rates.
+# """
 
 #----------------------------------------------------------#
 # LIVERAMP                                                 #
