@@ -36,7 +36,7 @@ type Company = {
   desc?: string;
   location?: string;
   start: Date;
-  end: Date;
+  end?: Date;
   positions: Position[];
 };
 
@@ -133,7 +133,7 @@ export const Position = (attrs: Position, _: string[]): string => {
 
 export const Company = (attrs: Company, _: string[]): string => {
   let start = dateFormat(attrs.start, "mmm yyyy");
-  let end = dateFormat(attrs.end, "mmm yyyy");
+  let end = attrs.end ? dateFormat(attrs.end, "mmm yyyy") : "Present";
   return (
     <div class="company">
       <h2 class="comp-name mb-0">{attrs.name}</h2>
@@ -183,7 +183,12 @@ type Data = {
 
 async function loadData(path: string): Promise<Data> {
   let data = toml.parse(await Bun.file(path).text());
-  data.companies.sort((a: Company, b: Company) => a.end <= b.end);
+  data.companies.sort((a: Company, b: Company) => {
+    // Treat missing end date as "present" (far future)
+    const aEnd = a.end ? a.end.getTime() : Date.now() + 1000000000;
+    const bEnd = b.end ? b.end.getTime() : Date.now() + 1000000000;
+    return bEnd - aEnd;
+  });
   return data;
 }
 
@@ -202,7 +207,7 @@ async function main() {
 
   let inner: string[] = [
     data.companies.map((company) => <Company {...company} />),
-    [<h2>Education</h2>],
+    [<h2>Education &amp; Professional Development</h2>],
     data.education.map((edu) => <Education {...edu} />),
   ].flat();
 

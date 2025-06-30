@@ -19,6 +19,9 @@ build: css html fonts
 zip:
   cd dist && zip -r ../dist.zip *
 
+deploy: build
+  bunx wrangler pages deploy dist --project-name=bobis-me
+
 watch-build:
   watchexec -e toml,ts,tsx,html,css "just build && nyxt --remote --quit --eval '(reload-current-buffer)'"
 
